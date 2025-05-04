@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Free online unit converter tool for length, weight, temperature and more. Convert between metric and imperial units easily, including kg to lbs, meter to inchs.">
-  <meta name="keywords" content="kg to lbs, meter to inchs，unit conversion, unit converter, metric converter, imperial converter, length converter, weight converter, temperature converter">
+  <meta name="keywords" content="kg to lbs, meter to inchs, unit conversion, unit converter, metric converter, imperial converter, length converter, weight converter, temperature converter">
   <title>Unit Converter | Online Conversion Tool for Length, Weight & Temperature</title>
   <script type="application/ld+json">
   {
@@ -24,7 +24,7 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8168297558848033"
   crossorigin="anonymous"></script>
-  <script type="module" crossorigin src="/assets/index-CQKfLBmB.js"></script>
+  <script type="module" crossorigin src="/assets/index-DgABqYnp.js"></script>
 </head>
 <body>
   <div id="app">
@@ -176,6 +176,45 @@
     background-color: #f5f7fa;
     color: #2c3e50;
     line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .converter-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .converter-section {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #app {
+      padding: 1rem;
+    }
+    .converter-container {
+      padding: 1rem;
+      gap: 2rem;
+    }
+    input[type="number"], .unit-select {
+      padding: 0.6rem;
+      font-size: 0.9rem;
+    }
+    .category-button {
+      padding: 0.6rem 1.2rem;
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    #app {
+      max-width: 90%;
+    }
+  }
+  
+  @media (min-width: 1025px) {
+    #app {
+      max-width: 1200px;
+    }
   }
 </style>
 </body>
