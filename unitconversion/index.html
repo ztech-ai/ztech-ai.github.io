@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free online unit converter tool for length, weight, temperature and more. Convert between metric and imperial units easily, including kg to lbs, meter to inchs.">
+  <meta name="keywords" content="kg to lbs, meter to inchs, unit conversion, unit converter, metric converter, imperial converter, length converter, weight converter, temperature converter">
+  <title>Unit Converter | Online Conversion Tool for Length, Weight & Temperature</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Unit Converter",
+    "description": "Free online tool for converting between different units of measurement",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8168297558848033"
+  crossorigin="anonymous"></script>
+  <script type="module" crossorigin src="/assets/index-DgABqYnp.js"></script>
+</head>
+<body>
+  <div id="app">
+  <div class="header">
+    <h1>Unit Converter</h1>
+  </div>
+  
+  <div class="converter-container">
+    <div class="converter-section">
+      <h2>Input</h2>
+      <div class="input-group">
+        <input type="number" v-model="inputValue" @input="convert" placeholder="Enter value">
+        <select v-model="fromUnit" @change="convert" class="unit-select">
+          <option v-for="(value, unit) in unitCategories[currentCategory]" :value="unit">{{unit}}</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="converter-section">
+      <h2>Output</h2>
+      <div class="output-group">
+        <input type="number" v-model="result" disabled class="result-display">
+        <select v-model="toUnit" @change="convert" class="unit-select">
+          <option v-for="(value, unit) in unitCategories[currentCategory]" :value="unit">{{unit}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  
+  <div class="category-section">
+    <h2>Unit Types</h2>
+    <div class="category-buttons">
+      <button 
+        v-for="(category, name) in unitCategories" 
+        @click="selectCategory(name)"
+        :class="{'active-button': currentCategory === name}"
+        class="category-button"
+      >
+        {{name}}
+      </button>
+    </div>
+  </div>
+</div>
+  <style>
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+  }
+  
+  #app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .converter-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .converter-section {
+    width: 40%;
+  }
+  
+  h2 {
+    color: #34495e;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .input-group, .output-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  input[type="number"] {
+    padding: 0.8rem;
+    margin-right: 1rem;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 70%;
+    transition: border-color 0.3s;
+  }
+  
+  input[type="number"]:focus {
+    outline: none;
+    border-color: #3498db;
+  }
+  
+  .unit-select {
+    padding: 0.8rem;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f8f9fa;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .unit-select:hover {
+    border-color: #3498db;
+  }
+  
+  .category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .category-button {
+    padding: 0.8rem 1.6rem;
+    background-color: #f8f9fa;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+  }
+  
+  .category-button:hover {
+    background-color: #e9ecef;
+  }
+  
+  .active-button {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+  }
+  
+  .result-display {
+    background-color: #f8f9fa;
+    color: #2c3e50;
+  }
+  
+  body {
+    background-color: #f5f7fa;
+    color: #2c3e50;
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .converter-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .converter-section {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #app {
+      padding: 1rem;
+    }
+    .converter-container {
+      padding: 1rem;
+      gap: 2rem;
+    }
+    input[type="number"], .unit-select {
+      padding: 0.6rem;
+      font-size: 0.9rem;
+    }
+    .category-button {
+      padding: 0.6rem 1.2rem;
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    #app {
+      max-width: 90%;
+    }
+  }
+  
+  @media (min-width: 1025px) {
+    #app {
+      max-width: 1200px;
+    }
+  }
+</style>
+</body>
+</html>
